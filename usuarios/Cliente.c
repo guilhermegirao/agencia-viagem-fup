@@ -125,7 +125,7 @@ void serchC(){
   }
 }
 
-int main (){
+void MenuCliente (){
 int opt1;
  printf ("---------------------------------------------------------\n");
     printf ("      Sistema para Cadastro de Clientes\n"); 
@@ -163,5 +163,4 @@ switch (opt1){
 }while(opt1!=5);
 
 
-  return 0;
 }
