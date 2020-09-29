@@ -128,16 +128,17 @@ void serchC(){
 
 void MenuCliente (){
 int opt1;
- printf("\n=============================\n");
+ 
+do{
+printf("\n=============================\n");
         printf("Menu de Clientes:");
         printf("\n=============================\n");
         printf("1. Cadastrar um cliente\n");
-        printf("2. Listar pacotes\n");
-        printf("3. Consultar pacotes\n");
-        printf("4. Remover um pacote\n");
+        printf("2. Listar Cadastros\n");
+        printf("3. Consultar Cadastros\n");
+        printf("4. Remover um Cadastros\n");
         printf("5. Encerrar programa");
         printf("\n=============================\n");
-do{
   printf("Digite aqui sua opcao: ");
 scanf("%d", &opt1);
 switch (opt1){
