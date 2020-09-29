@@ -8,7 +8,7 @@ typedef struct pacote
 {
     long int idPacote;
     int numHospedes;
-    char nomePacote[100], destinoViagem[100], dataPartida[20], dataRetorno[20];
+    char nomePacote[100], destinoViagem[100], dataPartida[100], dataRetorno[100];
 }Pacote;
 
 void cadastrarPacotes(){
@@ -64,13 +64,13 @@ void listarPacotes(){
     fclose(frb);
     
     // se cont_elementos = 0, nao ha pacotes no arquivo
+    FILE *frb2 = fopen(FILE_PACOTES, "rb");
 
     if(cont_elementos == 0){
 
         printf("\nNao ha pacotes cadastrados.\n");
 
     }else{
-        FILE *frb2 = fopen(FILE_PACOTES, "rb");
 
         while(fread(&p, sizeof(Pacote), 1, frb)){
         printf("\n=============================\n");
@@ -82,10 +82,11 @@ void listarPacotes(){
         printf("Data de retorno: %s", p.dataRetorno);
         printf("\n=============================\n");
         }
+        fclose(frb);
 
     }
 
-    fclose(frb);
+    fclose(frb2);
 }
 
 void consultarPacotes(){
@@ -159,7 +160,8 @@ void removerPacotes(){
 
         FILE *frb2 = fopen(FILE_PACOTES, "rb");
         Pacote *pac = (Pacote*) malloc(sizeof(Pacote));
-        int id, cont = 0;
+        long int id;
+        int cont = 0;
 
         printf("Digite o ID do pacote a ser removido: ");
         scanf("%ld", &id);
