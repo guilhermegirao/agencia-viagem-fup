@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#define FILE_CLIENTE "CLIENTE.txt"
+#define FILE_CLIENTE "./db/CLIENTE.txt"
 typedef struct cliente{
 int cpf;
 char nome[50];
