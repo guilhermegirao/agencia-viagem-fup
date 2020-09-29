@@ -1,6 +1,7 @@
 int vendasExiste();
-void adicionarVenda();
+void adicionarVendas();
 void listarVendas();
 void listarVendasCliente();
 void listarVendasPacote();
-void removerVenda();
+void removerVendas();
+void menuVendas();

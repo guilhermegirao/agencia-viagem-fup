@@ -23,7 +23,7 @@ int vendasExiste () {
   return existe;
 }
 
-void adicionarVenda () {
+void adicionarVendas () {
   FILE *f = fopen(FILE_VENDAS, "ab+");
 
   time_t timeVenda;
@@ -161,7 +161,7 @@ void listarVendasPacote () {
   fclose(f);
 }
 
-void removerVenda () {
+void removerVendas () {
   int vendaId, contagem = 0;
   FILE *f = fopen (FILE_VENDAS, "rb");
   Vendas v;
@@ -200,4 +200,49 @@ void removerVenda () {
     printf("Nenhuma venda foi realizada.");
     printf("\n=============================\n");
   }
+}
+
+void menuVendas () {
+  int opcao;
+
+  do {
+    printf("\n\n=============================\n");
+    printf("Menu de Vendas:");
+    printf("\n=============================\n");
+    printf("1. Adicionar uma Venda;\n");
+    printf("2. Listar todas as Vendas;\n");
+    printf("3. Listar Vendas por Cliente;\n");
+    printf("4. Listar Vendas por Pacote;\n");
+    printf("5. Remover alguma Venda;\n");
+    printf("6. Encerrar programa.");
+    printf("\n=============================\n");
+    
+    printf("Selecione uma das opções acima: ");
+    scanf("%d", &opcao);
+    printf("=============================\n\n");
+
+    switch (opcao) {
+      case 1:
+        adicionarVendas();
+        break;
+      case 2:
+        listarVendas();
+        break;
+      case 3:
+        listarVendasCliente();
+        break;
+      case 4:
+        listarVendasPacote();
+        break;
+      case 5:
+        removerVendas();
+        break;
+      case 6:
+        printf("Encerrando o programa...");
+        break;
+      default:
+        printf("\nOpção inválida, tente outra.\n");
+    }
+
+  } while (opcao != 6);
 }

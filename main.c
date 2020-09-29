@@ -1,7 +1,7 @@
 #include "global.h"
 
 int main () {
-  printf("olá, mundo!");
+  menuVendas();
 
   return 0;
 }
