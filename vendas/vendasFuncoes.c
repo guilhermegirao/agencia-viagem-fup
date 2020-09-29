@@ -38,6 +38,7 @@ void adicionarVendas () {
   printf("Insira o ID do Pacote de Viagem requirido: ");
   scanf("%d", &v.id_pacote);
 
+  //Gerar Data atual
   timeVenda = time(NULL);
   struct tm tm = *localtime(&timeVenda);
 
@@ -66,6 +67,7 @@ void adicionarVendas () {
 }
 
 void listarVendas () {
+  int contagem = 0;
   FILE *f = fopen (FILE_VENDAS, "rb");
   Vendas v;
 
@@ -78,6 +80,13 @@ void listarVendas () {
       printf("CPF do Cliente: %d\n", v.cpf_cliente);
       printf("ID do Pacote: %d\n", v.id_pacote);
       printf("Data da venda: %02d/%02d/%d\n",  v.data.dia, v.data.mes, v.data.ano);
+      printf("=============================\n");
+
+      contagem++;
+    }
+
+    if (contagem == 0) {
+      printf("Não há vendas cadastradas no momento.\n");
       printf("=============================\n");
     }
   } else {

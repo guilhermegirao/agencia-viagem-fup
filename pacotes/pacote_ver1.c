@@ -159,7 +159,8 @@ void removerPacotes(){
 
         FILE *frb2 = fopen(FILE_PACOTES, "rb");
         Pacote *pac = (Pacote*) malloc(sizeof(Pacote));
-        int id, cont = 0;
+        long int id;
+        int cont = 0;
 
         printf("Digite o ID do pacote a ser removido: ");
         scanf("%ld", &id);

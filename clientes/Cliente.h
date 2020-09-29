@@ -1,4 +1,3 @@
-
 int cadastro ();
 void removC();
 void addC();
