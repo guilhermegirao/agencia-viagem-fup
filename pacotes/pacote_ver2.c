@@ -167,9 +167,10 @@ void consultarPacotes(Pacote *vec_pacote){
     }
 }
 
-int main()
+void menuPacotes(Pacote *vec_pacote)
 {
-    Pacote *vec_pacote = (Pacote*) malloc(sizeof(Pacote)); //vetor dinamico de struct;
+    //declarar Pacote *vec_pacote na main do programa
+    //Pacote *vec_pacote = (Pacote*) malloc(sizeof(Pacote)); //vetor dinamico de struct;
 
     int op;
 
@@ -207,7 +208,6 @@ int main()
         }
 
     }while(op != 5);
-
-    free(vec_pacote);
-    return (0);
+    //declarar free(vec_pacote) na main do programa
+    //free(vec_pacote);
 }
