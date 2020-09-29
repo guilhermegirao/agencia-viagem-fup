@@ -7,7 +7,7 @@ char nome[50];
 char email[50];
 }Cliente;
 
-int cadastro () {
+int verife () {
   FILE *f;
   int cont = 0;
 
@@ -44,7 +44,7 @@ void removC(){
   FILE *f = fopen(FILE_CLIENTE, "rb");
   int cpfaux, cont = 0;
   Cliente c;
-  if(cadastro()== 1){
+  if(verife()== 1){
   Cliente *clientes = (Cliente*) malloc(sizeof(Cliente));
   printf("Digite o CPF do cliente a ser removido");
   scanf("%d", &cpfaux);
@@ -76,12 +76,13 @@ void removC(){
 void listC(){
   FILE *f = fopen(FILE_CLIENTE, "r+");
   Cliente c;
-  if (cadastro()==1){
+  if (verife()==1){
     while(fread(&c, sizeof(Cliente), 1, f)){
+      printf("=============================\n");
       printf("CPF: %d\n", c.cpf);
       printf("Nome: %s\n",c.nome);
       printf("E-mail: %s\n",c.email);
-      printf("----------------------------------\n");
+      printf("=============================\n");
     }
   } else{
     printf("=============================\n");
@@ -96,11 +97,11 @@ void serchC(){
   FILE *f = fopen (FILE_CLIENTE, "rb");
   Cliente c;
 
-  if (cadastro() == 1) {
+  if (verife() == 1) {
     printf("Insira o CPF do Cliente para realizar a pesquisa: ");
     scanf("%d", &clienteCpf);
 
-    printf("\nVendas realizadas para o Cliente de CPF %d: ", clienteCpf);
+    printf("\nCadastro realizadas para o Cliente de CPF %d: ", clienteCpf);
     printf("\n=============================\n");
 
     while (fread(&c, sizeof(Cliente), 1, f)) {
@@ -115,7 +116,7 @@ void serchC(){
     }
 
     if (contagem == 0) {
-      printf("Não há vendas realizadas para o CPF do Cliente indicado.\n");
+      printf("Não há cadastrps realizadas para o CPF do Cliente indicado.\n");
       printf("=============================\n");
     }
   } else {
@@ -127,31 +128,30 @@ void serchC(){
 
 void MenuCliente (){
 int opt1;
- printf ("---------------------------------------------------------\n");
-    printf ("      Sistema para Cadastro de Clientes\n"); 
-    printf ("---------------------------------------------------------\n\n");
-    printf ("              << MENU PRINCIPAL >>\n\n"); 
-    printf ("      1 - Realir cadastro de novos Clientes \n");
-    printf ("      2 - Excluir um cadastro existente\n"); 
-    printf ("      3 - Pesquisar por CPF\n"); 
-    printf ("      4 - Listar todos os Clientes\n");
-    printf ("      5 - Sai do Programa\n\n"); 
-    printf ("---------------------------------------------------------\n");
+ printf("\n=============================\n");
+        printf("Menu de pacotes:");
+        printf("\n=============================\n");
+        printf("1. Cadastrar um cliente\n");
+        printf("2. Listar pacotes\n");
+        printf("3. Consultar pacotes\n");
+        printf("4. Remover um pacote\n");
+        printf("5. Encerrar programa");
+        printf("\n=============================\n");
 do{
-  printf("      Código da operação: ");
+  printf("Digite aqui sua opcao: ");
 scanf("%d", &opt1);
 switch (opt1){
   case 1:
   addC();
   break;
   case 2:
-  removC();
+  listC();
   break;
   case 3:
   serchC();
   break;
   case 4:
-  listC();
+  removC();
   break;
   case 5:
   printf("Programa encerrado com sucesso!");
