@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#define FILE_CLIENTE "./db/CLIENTE.txt"
+#define FILE_CLIENTE "CLIENTE.txt"
 typedef struct cliente{
 int cpf;
 char nome[50];
@@ -129,7 +129,7 @@ void serchC(){
 void MenuCliente (){
 int opt1;
  printf("\n=============================\n");
-        printf("Menu de pacotes:");
+        printf("Menu de Clientes:");
         printf("\n=============================\n");
         printf("1. Cadastrar um cliente\n");
         printf("2. Listar pacotes\n");
@@ -161,6 +161,5 @@ switch (opt1){
 }
   
 }while(opt1!=5);
-
 
 }
