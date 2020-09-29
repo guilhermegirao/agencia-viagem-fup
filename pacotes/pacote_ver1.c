@@ -182,7 +182,7 @@ void removerPacotes(){
     }
 }
 
-int main(){
+void menuPacotes(){
 
     int op;
 
