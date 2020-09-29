@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#define FILE_PACOTES "pacotes.txt"
+#define FILE_PACOTES "./db/pacotes.txt"
 
 typedef struct pacote
 {
@@ -220,6 +220,4 @@ void menuPacotes(){
         }
 
     }while(op != 5);
-
-    return (0);
 }
