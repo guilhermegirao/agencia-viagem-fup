@@ -2,13 +2,13 @@
 #include <stdlib.h>
 #include <string.h>
 
-#define FILE_PACOTES "./db/pacotes.txt"
+#define FILE_PACOTES "fru.txt"
 
 typedef struct pacote
 {
     long int idPacote;
     int numHospedes;
-    char nomePacote[100], destinoViagem[100], dataPartida[10], dataRetorno[10];
+    char nomePacote[100], destinoViagem[100], dataPartida[20], dataRetorno[20];
 }Pacote;
 
 void cadastrarPacotes(){
@@ -159,8 +159,7 @@ void removerPacotes(){
 
         FILE *frb2 = fopen(FILE_PACOTES, "rb");
         Pacote *pac = (Pacote*) malloc(sizeof(Pacote));
-        long int id;
-        int cont = 0;
+        int id, cont = 0;
 
         printf("Digite o ID do pacote a ser removido: ");
         scanf("%ld", &id);
