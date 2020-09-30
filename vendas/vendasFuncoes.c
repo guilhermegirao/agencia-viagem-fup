@@ -2,6 +2,9 @@
 #include <stdlib.h>
 #include <time.h>
 
+#include "../clientes/Cliente.h"
+#include "../pacotes/pacote_ver1.h"
+
 #define FILE_VENDAS "./db/vendas.txt"
 
 typedef struct vendas {
@@ -223,7 +226,7 @@ void menuVendas () {
     printf("3. Listar Vendas por Cliente;\n");
     printf("4. Listar Vendas por Pacote;\n");
     printf("5. Remover alguma Venda;\n");
-    printf("6. Encerrar programa.");
+    printf("6. Voltar ao Menu de Gerenciamento.");
     printf("\n=============================\n");
     
     printf("Selecione uma das opções acima: ");
@@ -247,7 +250,7 @@ void menuVendas () {
         removerVendas();
         break;
       case 6:
-        printf("Encerrando o programa...");
+        printf("Voltando ao Menu de Gerenciamento...");
         break;
       default:
         printf("\nOpção inválida, tente outra.\n");

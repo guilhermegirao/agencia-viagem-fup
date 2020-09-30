@@ -22,7 +22,7 @@ int main () {
 
     switch (opcao) {
       case 1:
-        MenuCliente();
+        menuCliente();
         break;
       case 2:
         menuPacotes();
