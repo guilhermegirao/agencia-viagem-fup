@@ -1,3 +1,3 @@
-#include "./clientes/Cliente.h"
-#include "./pacotes/pacote_ver1.h"
+#include "./clientes/clientesFuncoes.h"
+#include "./pacotes/pacotesFuncoes.h"
 #include "./vendas/vendasFuncoes.h"
