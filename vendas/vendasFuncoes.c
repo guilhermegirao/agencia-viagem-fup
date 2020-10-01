@@ -14,6 +14,18 @@ typedef struct vendas {
   } data;
 } Vendas;
 
+typedef struct cliente {
+  int cpf;
+  char nome[50];
+  char email[50];
+} Cliente;
+
+typedef struct pacote {
+  long int idPacote;
+  int numHospedes;
+  char nomePacote[100], destinoViagem[100], dataPartida[100], dataRetorno[100];
+} Pacote;
+
 int vendasExiste () {
   FILE *f;
   int existe = 0;

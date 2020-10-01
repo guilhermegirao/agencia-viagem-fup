@@ -1,5 +1,3 @@
-typedef struct pacote *Pacote;
-
 int contElementosVetor();
 int checarPacotes();
 void cadastrarPacotes();

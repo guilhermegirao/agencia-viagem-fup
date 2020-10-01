@@ -1,5 +1,3 @@
-typedef struct cliente *Cliente;
-
 int verife ();
 int checarCliente();
 void removC();
