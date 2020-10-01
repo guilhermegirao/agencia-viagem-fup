@@ -7,7 +7,7 @@ O programa em questão consiste em utilizar os conteúdos aprendidos na discipli
 
 > Execute o comando do GCC para criar o arquivo executável:
 ```shell
-$ gcc -o exec ./vendas/vendasFuncoes.c  ./pacotes/pacotesFuncoes.c ./clientes/clientesFuncoes.c main.c
+$ gcc -o exec ./vendas/vendasFuncoes.c ./pacotes/pacotesFuncoes.c ./clientes/clientesFuncoes.c main.c
 ```
 > Agora, é só executar o comando:
 ```shell
@@ -23,7 +23,7 @@ $ ./exec
 - [Eliton Lima](https://github.com/Eliton-jpg)
 - [Emanuelle Torres](https://github.com/quartzocristal)
 
-## Versão: 1.0
+## Versão: 1.01
 
 ## Agradecimentos:
 * Ao professor/orientador: Enyo Gonçalves;

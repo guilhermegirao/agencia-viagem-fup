@@ -31,6 +31,32 @@ int contElementosVetor(Pacote *vec_pacote){ // função para contar elementos do
 
 }
 
+//Checa se o pacote informado existe
+int checarPacotes(Pacote *vec_pacote, int idPacote){
+    
+    FILE *frb = fopen(FILE_PACOTES, "rb");
+
+    int cont_elementos = contElementosVetor(vec_pacote);
+
+    int cont = 0;
+
+    // se cont_elementos = 0, nao ha pacotes no arquivo
+    if(cont_elementos > 0){
+        
+        while(fread(vec_pacote, sizeof(Pacote), 1, frb)){
+            if(vec_pacote->idPacote == idPacote){
+                cont = 1;
+            }
+        }
+
+        fclose(frb);
+    }
+
+    free(vec_pacote);
+
+    return cont;
+}
+
 void cadastrarPacotes(Pacote *vec_pacote){
     FILE *fab = fopen(FILE_PACOTES, "ab+");
     
@@ -63,7 +89,12 @@ void cadastrarPacotes(Pacote *vec_pacote){
     printf("Data de retorno: ");
     scanf(" %[^\n]", vec_pacote->dataRetorno);
 
-    fwrite(vec_pacote, sizeof(Pacote), 1, fab);
+    Pacote *vec_pacote2 = (Pacote*) malloc(sizeof(Pacote)); 
+    if (checarPacotes(vec_pacote2, vec_pacote->idPacote) == 0) {
+        fwrite(vec_pacote, sizeof(Pacote), 1, fab);
+    } else {
+        printf("\nJá existe pacote com o ID informado.\n");
+    }
 
     fclose(fab);
 }
@@ -136,13 +167,14 @@ void consultarPacotes(Pacote *vec_pacote){
     }
 }
 
-void removerPacotes(Pacote *vec_pacote){
+void removerPacotes(){
 
     //checa se o arquivo possui ou nao pacotes
-    
+    Pacote *vetPacote = (Pacote*) malloc(sizeof(Pacote));
+
     FILE *frb = fopen(FILE_PACOTES, "rb");
     Pacote p;
-    int cont_elementos = contElementosVetor(vec_pacote);
+    int cont_elementos = contElementosVetor(vetPacote);
     
     // se cont_elementos = 0, nao ha pacotes no arquivo
     
@@ -151,8 +183,6 @@ void removerPacotes(Pacote *vec_pacote){
         printf("\nNao ha pacotes cadastrados.\n");
 
     }else{
-
-        Pacote *pac = (Pacote*) malloc(sizeof(Pacote));
         long int id;
         int cont = 0;
 
@@ -161,43 +191,21 @@ void removerPacotes(Pacote *vec_pacote){
 
         while(fread(&p, sizeof(Pacote), 1, frb)){
             if(p.idPacote != id){
-                *(pac + cont) = p;
+                *(vetPacote + cont) = p;
                 cont++;
-                pac = (Pacote*) realloc(pac, (cont + 1) * sizeof(Pacote));
+                vetPacote = (Pacote*) realloc(vetPacote, (cont + 1) * sizeof(Pacote));
             }
         }
 
         FILE *fwb = fopen(FILE_PACOTES, "wb");
 
         for(int i = 0; i < cont; i++){
-            fwrite(pac+i, sizeof(Pacote), 1, fwb);
+            fwrite(vetPacote+i, sizeof(Pacote), 1, fwb);
         }
         fclose(fwb);
     }
-}
 
-//Checa se o pacote informado existe
-int checarPacotes(Pacote *vec_pacote, int idPacote){
-    
-    FILE *frb = fopen(FILE_PACOTES, "rb");
-
-    int cont_elementos = contElementosVetor(vec_pacote);
-
-    int cont = 0;
-
-    // se cont_elementos = 0, nao ha pacotes no arquivo
-    if(cont_elementos > 0){
-        
-        while(fread(vec_pacote, sizeof(Pacote), 1, frb)){
-            if(vec_pacote->idPacote == idPacote){
-                cont = 1;
-            }
-        }
-
-        fclose(frb);
-    }
-
-    return cont;
+    fclose(frb);
 }
 
 void menuPacotes(){
@@ -230,16 +238,15 @@ void menuPacotes(){
                 consultarPacotes(vec_pacote);
                 break;
             case 4:
-                removerPacotes(vec_pacote);
+                removerPacotes();
                 break;
             case 5:
                 printf("Voltando ao Menu de Gerenciamento...");
+                free(vec_pacote);
                 break;
             default:
                 printf("\nOpcao invalida, tente outra.\n");
         }
 
     }while(op != 5);
-
-    free(vec_pacote);
 }

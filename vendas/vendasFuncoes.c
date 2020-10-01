@@ -339,12 +339,11 @@ void menuVendas () {
         break;
       case 8:
         printf("Voltando ao Menu de Gerenciamento...");
+        free(vetVendas);
         break;
       default:
         printf("\nOpção inválida, tente outra.\n");
     }
 
   } while (opcao != 8);
-
-  free(vetVendas);
 }

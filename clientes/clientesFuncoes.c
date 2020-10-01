@@ -18,8 +18,25 @@ int verife () {
 
   return cont;
 }
+//Checa se o cliente informado existe
+int checarCliente(Cliente *vec_cliente, int clienteCpf){
+  int contagem = 0;
+  FILE *f = fopen (FILE_CLIENTE, "rb");
 
+  if (verife() == 1) {
+    while (fread(vec_cliente, sizeof(Cliente), 1, f)) {
+      if (vec_cliente->cpf == clienteCpf) {
+        contagem = 1;
+      }
+    }
 
+    fclose(f);
+  }
+
+  free(vec_cliente);
+
+  return contagem;
+}
 void addC(Cliente *vec_cliente){
   FILE *f = fopen(FILE_CLIENTE, "ab+");
 
@@ -33,11 +50,21 @@ void addC(Cliente *vec_cliente){
   printf("\nE-mail do cliente: ");
   scanf(" %[^\n]", vec_cliente->email);
   
-  fwrite(vec_cliente, sizeof(Cliente), 1, f);
-  fclose(f);
-  printf("=============================\n");
+  Cliente *vec_cliente2 = (Cliente*) malloc(sizeof(Cliente));
+
+  if (checarCliente(vec_cliente2, vec_cliente->cpf) == 0) {
+    fwrite(vec_cliente, sizeof(Cliente), 1, f);
+    
+    printf("=============================\n");
     printf("Cadastro realizado com sucesso.");
     printf("\n=============================\n");
+  } else {
+    printf("=============================\n");
+    printf("Já existe algum Cliente com o CPF indicado.");
+    printf("\n=============================\n");
+  }
+  
+  fclose(f);
 }
 void removC(){
   FILE *f = fopen(FILE_CLIENTE, "rb");
@@ -120,23 +147,6 @@ void serchC(Cliente *vec_cliente){
     printf("\n=============================\n");
   }
 }
-//Checa se o cliente informado existe
-int checarCliente(Cliente *vec_cliente, int clienteCpf){
-  int contagem = 0;
-  FILE *f = fopen (FILE_CLIENTE, "rb");
-
-  if (verife() == 1) {
-    while (fread(vec_cliente, sizeof(Cliente), 1, f)) {
-      if (vec_cliente->cpf == clienteCpf) {
-        contagem = 1;
-      }
-    }
-
-    fclose(f);
-  }
-
-  return contagem;
-}
 void menuCliente (){
 int opt1;
 
@@ -166,6 +176,7 @@ switch (opt1){
   break;
   case 4:
   removC();
+  free(vec_cliente);
   break;
   case 5:
   printf("Voltando ao Menu de Gerenciamento...");
@@ -175,7 +186,5 @@ switch (opt1){
 }
   
 }while(opt1!=5);
-
-free(vec_cliente);
 
 }
