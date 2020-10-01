@@ -29,9 +29,9 @@ int checarCliente(Cliente *vec_cliente, int clienteCpf){
         contagem = 1;
       }
     }
-
-    fclose(f);
   }
+
+  fclose(f);
 
   free(vec_cliente);
 

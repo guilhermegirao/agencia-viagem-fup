@@ -49,8 +49,9 @@ int checarPacotes(Pacote *vec_pacote, int idPacote){
             }
         }
 
-        fclose(frb);
     }
+
+    fclose(frb);
 
     free(vec_pacote);
 

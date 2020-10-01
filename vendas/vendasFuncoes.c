@@ -27,8 +27,8 @@ int vendasExiste () {
 }
 
 void adicionarVendas (Vendas *vetVendas) {
-  Pacote *vetPacote = (Pacote*) malloc(sizeof(Pacote));
-  Cliente *vetCliente = (Cliente*) malloc(sizeof(Cliente));
+  Pacote *vetPacote = malloc(sizeof(Pacote));
+  Cliente *vetCliente = malloc(sizeof(Cliente));
 
   FILE *f = fopen(FILE_VENDAS, "ab+");
 
